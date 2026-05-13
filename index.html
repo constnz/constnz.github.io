@@ -6,715 +6,929 @@
     <title>Constanza Gajardo León - Academic Portfolio</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #2d2d2d;
+            --accent: #0066cc;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --text-tertiary: #999999;
+            --border: #e0e0e0;
+            --bg-light: #ffffff;
+            --bg-lighter: #f9f9f9;
+        }
+
         html { scroll-behavior: smooth; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            color: var(--color-text-primary);
-            background: var(--color-background-primary);
-            line-height: 1.7;
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            color: var(--text-primary);
+            background: var(--bg-light);
+            line-height: 1.6;
             font-size: 16px;
         }
-        .wrapper {
-            display: flex;
-            min-height: 100vh;
-        }
-        .sidebar {
-            width: 280px;
-            padding: 2.5rem 1.5rem;
-            border-right: 1px solid var(--color-border-tertiary);
+
+        /* Navigation */
+        nav {
             position: sticky;
             top: 0;
-            height: 100vh;
-            overflow-y: auto;
-            background: var(--color-background-primary);
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 0 2rem;
         }
-        .main {
-            flex: 1;
-            padding: 3rem;
-            max-width: 900px;
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
         }
-        h1 {
-            font-size: 28px;
+
+        nav .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
             font-weight: 500;
-            margin-bottom: 0.25rem;
-            letter-spacing: -0.3px;
+            transition: color 0.3s;
+            cursor: pointer;
         }
-        .subtitle {
-            font-size: 16px;
-            color: var(--color-text-secondary);
-            margin-bottom: 2.5rem;
-            font-weight: 400;
+
+        nav .nav-links a:hover,
+        nav .nav-links a.active {
+            color: var(--accent);
         }
+
         .lang-switcher {
             display: flex;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
+            gap: 0.5rem;
+            margin-left: 2rem;
+            padding-left: 2rem;
+            border-left: 1px solid var(--border);
         }
+
         .lang-btn {
             background: none;
-            border: 1px solid var(--color-border-tertiary);
-            color: var(--color-text-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
             font-size: 12px;
             cursor: pointer;
-            padding: 0.5rem 0.75rem;
-            transition: all 0.2s;
+            padding: 0.4rem 0.8rem;
             border-radius: 4px;
+            transition: all 0.2s;
             font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
+
         .lang-btn.active {
-            color: var(--color-text-primary);
-            border-color: var(--color-text-primary);
-            background: var(--color-background-secondary);
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
         }
-        nav {
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+        }
+
+        .hero .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .hero .cta-buttons {
             display: flex;
-            flex-direction: column;
-            gap: 0;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
-        nav a {
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
             text-decoration: none;
-            color: var(--color-text-secondary);
-            font-size: 15px;
-            cursor: pointer;
-            padding: 0.75rem 0;
-            transition: color 0.2s;
-            border-left: 2px solid transparent;
-            padding-left: 0.75rem;
-        }
-        nav a:hover {
-            color: var(--color-text-primary);
-        }
-        nav a.active {
-            color: var(--color-text-primary);
-            border-left-color: var(--color-text-primary);
             font-weight: 500;
-        }
-        .contact-info {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--color-border-tertiary);
-        }
-        .contact-info a {
-            display: block;
-            text-decoration: none;
-            color: var(--color-text-secondary);
             font-size: 14px;
-            margin-bottom: 0.75rem;
-            transition: color 0.2s;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
         }
-        .contact-info a:hover {
-            color: var(--color-text-primary);
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
         }
-        .page {
+
+        .btn-primary:hover {
+            background: #0052a3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+        }
+
+        .btn-secondary {
+            background: var(--bg-lighter);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 0 2rem;
+        }
+
+        /* Section */
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        section.hidden {
             display: none;
         }
-        .page.active {
+
+        section.active {
             display: block;
         }
+
         h2 {
-            font-size: 24px;
-            font-weight: 500;
+            font-size: 32px;
+            font-weight: 700;
             margin-bottom: 2rem;
-            color: var(--color-text-primary);
+            color: var(--primary);
         }
+
         h3 {
-            font-size: 18px;
-            font-weight: 500;
-            margin-top: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--color-text-primary);
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
         }
+
         h3:first-child {
             margin-top: 0;
         }
-        .section {
-            margin-bottom: 2.5rem;
+
+        h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
         }
-        .section p {
-            color: var(--color-text-secondary);
-            margin-bottom: 1rem;
+
+        p {
+            color: var(--text-secondary);
             line-height: 1.8;
+            margin-bottom: 1rem;
         }
-        .publication {
-            margin-bottom: 2.5rem;
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .about-card {
+            padding: 1.5rem;
+            background: var(--bg-lighter);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .about-card h4 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        /* Publications & Projects */
+        .publication,
+        .project {
+            margin-bottom: 2rem;
             padding-bottom: 2rem;
-            border-bottom: 1px solid var(--color-border-tertiary);
+            border-bottom: 1px solid var(--border);
         }
-        .publication:last-child {
+
+        .publication:last-child,
+        .project:last-child {
             border-bottom: none;
-            margin-bottom: 0;
             padding-bottom: 0;
+            margin-bottom: 0;
         }
+
         .pub-title {
             font-size: 16px;
-            font-weight: 500;
-            color: var(--color-text-primary);
+            font-weight: 600;
+            color: var(--primary);
             margin-bottom: 0.5rem;
             line-height: 1.5;
         }
+
         .pub-title a {
-            color: var(--color-text-primary);
+            color: var(--accent);
             text-decoration: none;
-            border-bottom: 1px solid var(--color-border-secondary);
-            transition: all 0.2s;
+            transition: opacity 0.3s;
         }
+
         .pub-title a:hover {
-            border-bottom-color: var(--color-text-primary);
+            opacity: 0.8;
+            text-decoration: underline;
         }
+
         .pub-meta {
-            font-size: 14px;
-            color: var(--color-text-tertiary);
+            font-size: 13px;
+            color: var(--text-tertiary);
             margin-bottom: 0.5rem;
+            font-weight: 500;
         }
+
         .pub-authors {
             font-size: 14px;
-            color: var(--color-text-secondary);
+            color: var(--text-secondary);
             margin-bottom: 0.75rem;
             font-style: italic;
         }
-        .pub-desc {
-            color: var(--color-text-secondary);
-            font-size: 15px;
-        }
-        .research-area {
-            margin-bottom: 2rem;
-        }
-        .research-area h4 {
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--color-text-primary);
-            margin-bottom: 0.75rem;
-        }
-        .research-area p {
-            color: var(--color-text-secondary);
-            margin-bottom: 0.75rem;
-        }
-        .project {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: var(--color-background-secondary);
-            border-radius: 8px;
-            border: 1px solid var(--color-border-tertiary);
-        }
-        .project-title {
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--color-text-primary);
-            margin-bottom: 0.5rem;
-        }
-        .project-meta {
+
+        .pub-journal {
             font-size: 14px;
-            color: var(--color-text-tertiary);
+            color: var(--text-secondary);
+        }
+
+        /* Projects */
+        .project-card {
+            padding: 1.5rem;
+            background: var(--bg-lighter);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.1);
+        }
+
+        .project-card h4 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        .project-meta {
+            font-size: 13px;
+            color: var(--text-tertiary);
             margin-bottom: 0.75rem;
+            font-weight: 500;
         }
+
         .project-desc {
-            color: var(--color-text-secondary);
-            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
         }
-        .cv-download {
-            display: inline-block;
+
+        /* Research Themes */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .research-item {
+            padding: 1.5rem;
+            background: var(--bg-lighter);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .research-item h4 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        /* Consulting Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .service-card {
+            padding: 1.5rem;
+            background: var(--bg-lighter);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .service-card h4 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        .service-list {
+            margin-left: 1.5rem;
+        }
+
+        .service-list li {
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Contact Section */
+        .contact-cta {
+            background: var(--bg-lighter);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .contact-cta p {
+            margin-bottom: 1.5rem;
+            font-size: 16px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             padding: 0.75rem 1.5rem;
-            background: var(--color-background-secondary);
-            border: 1px solid var(--color-border-secondary);
-            color: var(--color-text-primary);
+            background: var(--accent);
+            color: white;
             text-decoration: none;
             border-radius: 6px;
-            font-size: 15px;
-            transition: all 0.2s;
-            margin-bottom: 2rem;
-        }
-        .cv-download:hover {
-            border-color: var(--color-text-primary);
-            background: var(--color-background-tertiary);
-        }
-        .service {
-            margin-bottom: 2.5rem;
-        }
-        .service h4 {
-            font-size: 16px;
             font-weight: 500;
-            color: var(--color-text-primary);
-            margin-bottom: 0.75rem;
+            font-size: 14px;
+            transition: background 0.3s;
         }
-        .service p {
-            color: var(--color-text-secondary);
-            margin-bottom: 0.75rem;
+
+        .contact-link:hover {
+            background: #0052a3;
         }
-        .service strong {
-            color: var(--color-text-primary);
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 14px;
+            border-top: 1px solid var(--border);
         }
-        ul {
+
+        /* List Styles */
+        ul, ol {
             margin-left: 1.5rem;
-            color: var(--color-text-secondary);
+            color: var(--text-secondary);
             margin-bottom: 1rem;
         }
-        ul li {
+
+        ul li, ol li {
             margin-bottom: 0.75rem;
+            line-height: 1.7;
         }
-        @media (max-width: 900px) {
-            .wrapper { flex-direction: column; }
-            .sidebar { 
-                width: 100%; 
+
+        /* Language Classes */
+        .en { display: block; }
+        .es { display: none; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav .container {
+                padding: 1rem 0;
                 height: auto;
-                position: static;
-                border-right: none;
-                border-bottom: 1px solid var(--color-border-tertiary);
-                padding: 2rem 1.5rem;
+                flex-direction: column;
+                gap: 1rem;
             }
-            .main { padding: 2rem 1.5rem; }
-            nav { flex-direction: row; gap: 1.5rem; }
-            nav a { padding: 0; border-left: none; padding-left: 0; border-bottom: 2px solid transparent; }
-            nav a.active { border-left: none; border-bottom-color: var(--color-text-primary); }
+
+            nav .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                font-size: 13px;
+            }
+
+            .lang-switcher {
+                margin-left: 0;
+                padding-left: 0;
+                border-left: none;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 0 1rem;
+            }
+
+            section {
+                padding: 2rem 0;
+            }
         }
-        @media (max-width: 600px) {
-            .main { padding: 1.5rem 1rem; }
-            h1 { font-size: 24px; }
-            h2 { font-size: 20px; }
-            nav { gap: 1rem; }
-            .sidebar { padding: 1.5rem 1rem; }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0 1rem;
+            }
+
+            nav .nav-links {
+                gap: 0.75rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .hero .cta-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="sidebar">
-            <h1>Constanza<br>Gajardo León</h1>
-            <p class="subtitle en">Postdoctoral Researcher, Vrije Universiteit Brussel | Assistant Professor, Universidad de Concepción</p>
-            <p class="subtitle es" style="display: none;">Investigadora Postdoctoral, Vrije Universiteit Brussel | Profesora Asistente, Universidad de Concepción</p>
-            
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo" onclick="showSection('home')">Constanza Gajardo</a>
+            <ul class="nav-links">
+                <li><a onclick="showSection('home')" class="nav-item active en">Home</a>
+                    <a onclick="showSection('home')" class="nav-item active es" style="display: none;">Inicio</a></li>
+                <li><a onclick="showSection('about')" class="nav-item en">About</a>
+                    <a onclick="showSection('about')" class="nav-item es" style="display: none;">Sobre mí</a></li>
+                <li><a onclick="showSection('research')" class="nav-item en">Research</a>
+                    <a onclick="showSection('research')" class="nav-item es" style="display: none;">Investigación</a></li>
+                <li><a onclick="showSection('publications')" class="nav-item en">Publications</a>
+                    <a onclick="showSection('publications')" class="nav-item es" style="display: none;">Publicaciones</a></li>
+                <li><a onclick="showSection('consulting')" class="nav-item en">Consulting</a>
+                    <a onclick="showSection('consulting')" class="nav-item es" style="display: none;">Consultoría</a></li>
+            </ul>
             <div class="lang-switcher">
                 <button class="lang-btn active" onclick="switchLang('en')">EN</button>
                 <button class="lang-btn" onclick="switchLang('es')">ES</button>
             </div>
+        </div>
+    </nav>
 
-            <nav>
-                <a class="nav-link active" onclick="showPage('home')">
-                    <span class="en">Home</span>
-                    <span class="es" style="display: none;">Inicio</span>
-                </a>
-                <a class="nav-link" onclick="showPage('about')">
-                    <span class="en">About</span>
-                    <span class="es" style="display: none;">Sobre mí</span>
-                </a>
-                <a class="nav-link" onclick="showPage('research')">
-                    <span class="en">Research</span>
-                    <span class="es" style="display: none;">Investigación</span>
-                </a>
-                <a class="nav-link" onclick="showPage('publications')">
-                    <span class="en">Publications/CV</span>
-                    <span class="es" style="display: none;">Publicaciones/CV</span>
-                </a>
-                <a class="nav-link" onclick="showPage('consulting')">
-                    <span class="en">Consulting</span>
-                    <span class="es" style="display: none;">Consultoría</span>
-                </a>
-            </nav>
-
-            <div class="contact-info">
-                <a href="mailto:congajardo@udec.cl">congajardo@udec.cl</a>
-                <a href="https://orcid.org/0000-0001-8372-8889" target="_blank">ORCID</a>
-                <a href="https://www.linkedin.com/in/constanza-gajardo-leon/" target="_blank">LinkedIn</a>
+    <!-- Hero Section -->
+    <section class="hero" id="home-section">
+        <div class="container">
+            <h1 class="en">Constanza Gajardo León</h1>
+            <h1 class="es" style="display: none;">Constanza Gajardo León</h1>
+            <p class="en">Postdoctoral Researcher at Vrije Universiteit Brussel | Assistant Professor at Universidad de Concepción</p>
+            <p class="es" style="display: none;">Investigadora Postdoctoral en Vrije Universiteit Brussel | Profesora Asistente en la Universidad de Concepción</p>
+            <p class="en">Exploring how citizens engage with news and what drives audience loyalty to journalism in an era of media fragmentation.</p>
+            <p class="es" style="display: none;">Explorando cómo se involucran los ciudadanos con las noticias y qué impulsa la lealtad de las audiencias al periodismo en una era de fragmentación mediática.</p>
+            <div class="cta-buttons">
+                <a href="#publications-section" class="btn btn-primary en">Read My Work</a>
+                <a href="#publications-section" class="btn btn-primary es" style="display: none;">Leer Mi Trabajo</a>
+                <a href="mailto:congajardo@udec.cl" class="btn btn-secondary en">Get in Touch</a>
+                <a href="mailto:congajardo@udec.cl" class="btn btn-secondary es" style="display: none;">Ponte en Contacto</a>
             </div>
         </div>
+    </section>
 
-        <div class="main">
-            <!-- HOME PAGE -->
-            <div id="home" class="page active">
-                <h2 class="en">Constanza Gajardo León</h2>
-                <h2 class="es" style="display: none;">Constanza Gajardo León</h2>
-                
-                <p class="en" style="font-size: 17px; color: var(--color-text-secondary); margin-bottom: 2rem; line-height: 1.8;">
-                    I am a postdoctoral researcher at Vrije Universiteit Brussel and Assistant Professor at the Universidad de Concepción. My research examines the relationship between journalis[...]
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Home Section -->
+        <section id="home" class="active">
+            <!-- Hero content above -->
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="hidden">
+            <div class="container">
+                <h2 class="en">About Me</h2>
+                <h2 class="es" style="display: none;">Sobre Mí</h2>
+
+                <h3 class="en">Background</h3>
+                <h3 class="es" style="display: none;">Trayectoria</h3>
+                <p class="en">
+                    I hold a PhD in Humanities from Vrije Universiteit Amsterdam (2023), a Master's degree in Social Communication from the Universidad de Concepción (2012), and a degree in Journalism (2009).
+                </p>
+                <p class="es" style="display: none;">
+                    Tengo un Doctorado en Humanidades de la Vrije Universiteit Amsterdam (2023), Magíster en Comunicación Social de la Universidad de Concepción (2012) y Licenciatura en Periodismo (2009).
                 </p>
 
-                <p class="es" style="display: none; font-size: 17px; color: var(--color-text-secondary); margin-bottom: 2rem; line-height: 1.8;">
-                    Soy investigadora postdoctoral en Vrije Universiteit Brussel y Profesora Asistente en la Universidad de Concepción. Mi investigación examina la relación entre periodistas y[...]
-                </p>
-
-                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border-tertiary);">
-                    <h3 class="en">Quick links</h3>
-                    <h3 class="es" style="display: none;">Enlaces rápidos</h3>
-                    <ul style="margin-top: 1rem;">
-                        <li><a href="#about" onclick="showPage('about')" style="color: var(--color-text-primary); text-decoration: none; border-bottom: 1px solid var(--color-border-secondary);">
-                            <span class="en">Learn about my background and research focus</span>
-                            <span class="es" style="display: none;">Conoce mi trayectoria y enfoque de investigación</span>
-                        </a></li>
-                        <li><a href="#publications" onclick="showPage('publications')" style="color: var(--color-text-primary); text-decoration: none; border-bottom: 1px solid var(--color-border-[...]
-                            <span class="en">View my publications and download CV</span>
-                            <span class="es" style="display: none;">Ver mis publicaciones y descargar CV</span>
-                        </a></li>
-                        <li><a href="#consulting" onclick="showPage('consulting')" style="color: var(--color-text-primary); text-decoration: none; border-bottom: 1px solid var(--color-border-seco[...]
-                            <span class="en">Explore consulting services</span>
-                            <span class="es" style="display: none;">Explorar servicios de consultoría</span>
-                        </a></li>
-                    </ul>
+                <h3 class="en">Current Positions</h3>
+                <h3 class="es" style="display: none;">Posiciones Actuales</h3>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <h4 class="en">Postdoctoral Researcher</h4>
+                        <h4 class="es" style="display: none;">Investigadora Postdoctoral</h4>
+                        <p class="en">Vrije Universiteit Brussel<br><small>2025–present</small></p>
+                        <p class="es" style="display: none;">Vrije Universiteit Brussel<br><small>2025–presente</small></p>
+                    </div>
+                    <div class="about-card">
+                        <h4 class="en">Assistant Professor</h4>
+                        <h4 class="es" style="display: none;">Profesora Asistente</h4>
+                        <p class="en">Universidad de Concepción<br><small>2013–present</small></p>
+                        <p class="es" style="display: none;">Universidad de Concepción<br><small>2013–presente</small></p>
+                    </div>
+                    <div class="about-card">
+                        <h4 class="en">Adjunct Researcher</h4>
+                        <h4 class="es" style="display: none;">Investigadora Adjunta</h4>
+                        <p class="en">MEPOP (Millennium Nucleus)<br><small>2024–present</small></p>
+                        <p class="es" style="display: none;">MEPOP (Núcleo Milenio)<br><small>2024–presente</small></p>
+                    </div>
                 </div>
+
+                <h3 class="en">Recognition & Awards</h3>
+                <h3 class="es" style="display: none;">Premios y Reconocimientos</h3>
+                <ul class="en">
+                    <li>TOP FACULTY PAPER Award, 74th International Communication Association Conference (2024)</li>
+                    <li>BECAS CHILE Doctoral Scholarship for Studies Abroad (2017)</li>
+                    <li>University of Concepción Award (2011)</li>
+                </ul>
+                <ul class="es" style="display: none;">
+                    <li>Premio TOP FACULTY PAPER, 74ª Conferencia de la International Communication Association (2024)</li>
+                    <li>Beca BECAS CHILE para Doctorado en el Extranjero (2017)</li>
+                    <li>Premio Universidad de Concepción (2011)</li>
+                </ul>
             </div>
+        </section>
 
-            <!-- ABOUT PAGE -->
-            <div id="about" class="page">
-                <h2 class="en">About</h2>
-                <h2 class="es" style="display: none;">Sobre mí</h2>
-
-                <div class="section">
-                    <h3 class="en">Background</h3>
-                    <h3 class="es" style="display: none;">Trayectoria</h3>
-                    <p class="en">
-                        I hold a PhD in Humanities from Vrije Universiteit Amsterdam (2023), a Master's degree in Social Communication from the Universidad de Concepción (2012), and a degree in [...]
-                    </p>
-                    <p class="es" style="display: none;">
-                        Tengo un Doctorado en Humanidades de la Vrije Universiteit Amsterdam (2023), Magíster en Comunicación Social de la Universidad de Concepción (2012) y Licenciatura en Pe[...]
-                    </p>
-                </div>
-
-                <div class="section">
-                    <h3 class="en">Current Positions & Affiliations</h3>
-                    <h3 class="es" style="display: none;">Posiciones Actuales y Afiliaciones</h3>
-                    <p class="en">
-                        <strong>Postdoctoral Researcher</strong>, Vrije Universiteit Brussel (2025–present)<br>
-                        <strong>Adjunct Researcher</strong>, Millennium Nucleus for the Study of Politics, Public Opinion and Media in Chile (MEPOP) (2024–present)<br>
-                        <strong>Assistant Professor</strong>, Department of Social Communication, Universidad de Concepción (2013–present)
-                    </p>
-                    <p class="es" style="display: none;">
-                        <strong>Investigadora Postdoctoral</strong>, Vrije Universiteit Brussel (2025–presente)<br>
-                        <strong>Investigadora Adjunta</strong>, Núcleo Milenio para el Estudio de la Política, Opinión Pública y Medios en Chile (MEPOP) (2024–presente)<br>
-                        <strong>Profesora Asistente</strong>, Departamento de Comunicación Social, Universidad de Concepción (2013–presente)
-                    </p>
-                </div>
-
-                <div class="section">
-                    <h3 class="en">Recognition & Awards</h3>
-                    <h3 class="es" style="display: none;">Premios y Reconocimientos</h3>
-                    <ul class="en">
-                        <li>TOP FACULTY PAPER Award, 74th International Communication Association Conference, Journalism Studies Division (2024)</li>
-                        <li>BECAS CHILE Doctoral Scholarship for Studies Abroad (2017)</li>
-                        <li>University of Concepción Award (2011)</li>
-                    </ul>
-                    <ul class="es" style="display: none;">
-                        <li>Premio TOP FACULTY PAPER, 74ª Conferencia de la International Communication Association, División de Journalism Studies (2024)</li>
-                        <li>Beca BECAS CHILE para Doctorado en el Extranjero (2017)</li>
-                        <li>Premio Universidad de Concepción (2011)</li>
-                    </ul>
-                </div>
-
-                <div class="section">
-                    <h3 class="en">Research Interests</h3>
-                    <h3 class="es" style="display: none;">Intereses de Investigación</h3>
-                    <p class="en">
-                        My research centers on understanding how citizens experience and engage with news, what factors drive audience loyalty to journalism, how news relevance is constructed, an[...]
-                    </p>
-                    <p class="es" style="display: none;">
-                        Mi investigación se centra en entender cómo los ciudadanos experimentan e se involucran con noticias, qué factores impulsan la lealtad de audiencias al periodismo, cóm[...]
-                    </p>
-                </div>
-            </div>
-
-            <!-- RESEARCH PAGE -->
-            <div id="research" class="page">
+        <!-- Research Section -->
+        <section id="research" class="hidden">
+            <div class="container">
                 <h2 class="en">Research</h2>
                 <h2 class="es" style="display: none;">Investigación</h2>
 
-                <div class="section">
-                    <h3 class="en">Research Agenda</h3>
-                    <h3 class="es" style="display: none;">Agenda de Investigación</h3>
-                    <p class="en">
-                        My research examines four interconnected dimensions: (1) <strong>news consumption practices</strong> — how citizens across different contexts access and use news; (2) <s[...]
-                    </p>
-                    <p class="es" style="display: none;">
-                        Mi investigación examina cuatro dimensiones interconectadas: (1) <strong>prácticas de consumo de noticias</strong> — cómo los ciudadanos acceden y usan noticias en di[...]
-                    </p>
+                <h3 class="en">Research Agenda</h3>
+                <h3 class="es" style="display: none;">Agenda de Investigación</h3>
+                <p class="en">
+                    My research examines four interconnected dimensions: (1) <strong>news consumption practices</strong> — how citizens access and use news; (2) <strong>audience loyalty</strong> — what sustains long-term relationships with journalism; (3) <strong>news relevance</strong> — how citizens evaluate whether journalism serves their information needs; and (4) <strong>digital inequalities</strong> — how platform affordances and access shape news engagement.
+                </p>
+                <p class="es" style="display: none;">
+                    Mi investigación examina cuatro dimensiones interconectadas: (1) <strong>prácticas de consumo de noticias</strong> — cómo los ciudadanos acceden y usan noticias; (2) <strong>lealtad de audiencias</strong> — qué sustenta relaciones a largo plazo con el periodismo; (3) <strong>relevancia de noticias</strong> — cómo los ciudadanos evalúan si el periodismo sirve sus necesidades informativas; y (4) <strong>desigualdades digitales</strong> — cómo las affordances de plataformas y el acceso moldean el engagement con noticias.
+                </p>
+
+                <h3 class="en">Active Projects</h3>
+                <h3 class="es" style="display: none;">Proyectos Activos</h3>
+                
+                <div class="project-card">
+                    <h4 class="en">Beyond Access: Digital News Inequalities Through Trace Data</h4>
+                    <h4 class="es" style="display: none;">Más Allá del Acceso: Desigualdades de Noticias Digitales</h4>
+                    <div class="project-meta en">Co-investigator | 2025–2026 | VUB</div>
+                    <div class="project-meta es" style="display: none;">Coinvestigadora | 2025–2026 | VUB</div>
+                    <div class="project-desc en">Examining digital news inequalities in the UK and Brazil using trace-based interview methodologies.</div>
+                    <div class="project-desc es" style="display: none;">Examinar desigualdades de noticias digitales en Reino Unido y Brasil usando metodologías de entrevistas basadas en datos de rastreo.</div>
                 </div>
 
-                <h3 class="en">Active Research Projects</h3>
-                <h3 class="es" style="display: none;">Proyectos de Investigación Activos</h3>
-
-                <div class="project">
-                    <div class="project-title en">Beyond Access: Digital News Inequalities Through Trace Data</div>
-                    <div class="project-title es" style="display: none;">Más Allá del Acceso: Desigualdades de Noticias Digitales Mediante Datos de Rastreo</div>
-                    <div class="project-meta en">Co-investigator | 2025–2026</div>
-                    <div class="project-meta es" style="display: none;">Coinvestigadora | 2025–2026</div>
-                    <div class="project-desc en">Examining digital news inequalities in the UK and Brazil using innovative trace-based interview methodologies to understand how citizens from diff[...]
-                    <div class="project-desc es" style="display: none;">Examinar desigualdades de noticias digitales en Reino Unido y Brasil utilizando metodologías innovadoras de entrevistas ba[...]
-                </div>
-
-                <div class="project">
-                    <div class="project-title en">Information Needs of Local Audiences in Chile</div>
-                    <div class="project-title es" style="display: none;">Necesidades de Información de Audiencias Locales en Chile</div>
+                <div class="project-card">
+                    <h4 class="en">Information Needs of Local Audiences in Chile</h4>
+                    <h4 class="es" style="display: none;">Necesidades de Información de Audiencias Locales</h4>
                     <div class="project-meta en">Principal Investigator | 2024–2025 | ANID Funded</div>
                     <div class="project-meta es" style="display: none;">Investigadora Principal | 2024–2025 | Financiado por ANID</div>
-                    <div class="project-desc en">Exploring the information needs of local audiences in different Chilean regions and how local journalism can better respond to and serve those nee[...]
-                    <div class="project-desc es" style="display: none;">Explorar las necesidades de información de audiencias locales en diferentes regiones de Chile y cómo el periodismo local [...]
+                    <div class="project-desc en">Exploring information needs of local audiences in different Chilean regions and how local journalism can serve those needs.</div>
+                    <div class="project-desc es" style="display: none;">Explorar las necesidades de información de audiencias locales en diferentes regiones de Chile.</div>
                 </div>
 
-                <div class="project">
-                    <div class="project-title en">Professional and Audience Expectations of Journalism</div>
-                    <div class="project-title es" style="display: none;">Expectativas Profesionales y de Audiencias sobre Periodismo</div>
+                <div class="project-card">
+                    <h4 class="en">Professional and Audience Expectations of Journalism</h4>
+                    <h4 class="es" style="display: none;">Expectativas Profesionales y de Audiencias</h4>
                     <div class="project-meta en">Co-investigator | 2023–2026 | ANID Funded</div>
                     <div class="project-meta es" style="display: none;">Coinvestigadora | 2023–2026 | Financiado por ANID</div>
-                    <div class="project-desc en">A comparative study examining the alignment (and misalignment) between professional journalistic expectations, audience evaluations of journalism'[...]
-                    <div class="project-desc es" style="display: none;">Un estudio comparativo que examina la alineación (y desalineación) entre expectativas periodísticas profesionales, evalu[...]
+                    <div class="project-desc en">A comparative study examining alignment between professional journalistic expectations and audience evaluations.</div>
+                    <div class="project-desc es" style="display: none;">Estudio comparativo sobre alineación entre expectativas profesionales y evaluaciones de audiencias.</div>
                 </div>
 
-                <div class="section">
-                    <h3 class="en">Research Themes</h3>
-                    <h3 class="es" style="display: none;">Temas de Investigación</h3>
-                    
-                    <div class="research-area">
+                <h3 class="en">Research Themes</h3>
+                <h3 class="es" style="display: none;">Temas de Investigación</h3>
+                <div class="research-grid">
+                    <div class="research-item">
                         <h4 class="en">News Loyalty & Engagement</h4>
-                        <h4 class="es" style="display: none;">Lealtad y Engagement con Noticias</h4>
-                        <p class="en">What factors sustain audience relationships with news sources over time? How do citizens develop loyalty to journalism in an era of media fragmentation and p[...]
-                        <p class="es" style="display: none;">¿Qué factores sostienen relaciones de audiencias con fuentes de noticias en el tiempo? ¿Cómo desarrollan los ciudadanos lealtad al[...]
+                        <h4 class="es" style="display: none;">Lealtad y Engagement</h4>
+                        <p class="en">What factors sustain audience relationships with news sources over time?</p>
+                        <p class="es" style="display: none;">¿Qué factores sostienen relaciones de audiencias con fuentes de noticias?</p>
                     </div>
-
-                    <div class="research-area">
-                        <h4 class="en">News Relevance & Democratic Role</h4>
-                        <h4 class="es" style="display: none;">Relevancia de Noticias y Rol Democrático</h4>
-                        <p class="en">What makes journalism relevant to citizens' daily lives and democratic participation? How do news consumers evaluate whether journalism serves their informat[...]
-                        <p class="es" style="display: none;">¿Qué hace que el periodismo sea relevante para la vida diaria de los ciudadanos y su participación democrática? ¿Cómo evalúan l[...]
+                    <div class="research-item">
+                        <h4 class="en">News Relevance & Democracy</h4>
+                        <h4 class="es" style="display: none;">Relevancia y Democracia</h4>
+                        <p class="en">What makes journalism relevant to citizens' daily lives and democratic participation?</p>
+                        <p class="es" style="display: none;">¿Qué hace que el periodismo sea relevante para la democracia?</p>
                     </div>
-
-                    <div class="research-area">
-                        <h4 class="en">Digital News Practices & Inequalities</h4>
-                        <h4 class="es" style="display: none;">Prácticas de Noticias Digitales e Desigualdades</h4>
-                        <p class="en">How do platform affordances shape news consumption? What digital news inequalities exist across different populations and how do they affect access to inform[...]
-                        <p class="es" style="display: none;">¿Cómo dan forma las affordances de plataformas al consumo de noticias? ¿Qué desigualdades de noticias digitales existen entre dife[...]
-                    </div>
-
-                    <div class="research-area">
-                        <h4 class="en">Global Comparative Perspectives</h4>
-                        <h4 class="es" style="display: none;">Perspectivas Comparativas Globales</h4>
-                        <p class="en">How do journalism-audience relationships vary across different countries, media systems, and cultural contexts? What universal patterns exist and what is con[...]
-                        <p class="es" style="display: none;">¿Cómo varían las relaciones periodismo-audiencia en diferentes países, sistemas mediáticos y contextos culturales? ¿Qué patrone[...]
+                    <div class="research-item">
+                        <h4 class="en">Digital News Practices</h4>
+                        <h4 class="es" style="display: none;">Prácticas de Noticias Digitales</h4>
+                        <p class="en">How do platform affordances shape news consumption and create inequalities?</p>
+                        <p class="es" style="display: none;">¿Cómo moldean las plataformas el consumo de noticias?</p>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- PUBLICATIONS PAGE -->
-            <div id="publications" class="page">
-                <h2 class="en">Publications & CV</h2>
-                <h2 class="es" style="display: none;">Publicaciones y CV</h2>
+        <!-- Publications Section -->
+        <section id="publications" class="hidden">
+            <div class="container">
+                <h2 class="en">Publications</h2>
+                <h2 class="es" style="display: none;">Publicaciones</h2>
 
                 <h3 class="en">Journal Articles (Peer-Reviewed)</h3>
-                <h3 class="es" style="display: none;">Artículos de Revistas (Revisados por Pares)</h3>
+                <h3 class="es" style="display: none;">Artículos en Revistas Científicas</h3>
 
                 <div class="publication">
                     <div class="pub-title en">Evaluating the potential and limits of trace-based interviews when studying news use</div>
                     <div class="pub-title es" style="display: none;">Evaluating the potential and limits of trace-based interviews when studying news use</div>
                     <div class="pub-authors">Gajardo, C., Kalogeropoulos, A., Rossini, P., Mont'Alverne, C., & Nicholls, T.</div>
-                    <div class="pub-meta">Information, Communication & Society, 2026</div>
+                    <div class="pub-journal"><em>Information, Communication & Society</em>, 2026</div>
                 </div>
 
                 <div class="publication">
                     <div class="pub-title en">The importance of the human touch in journalism: Journalistic values from an audience perspective</div>
-                    <div class="pub-title es" style="display: none;">The importance of the human touch in journalism: Journalistic values from an audience perspective</div>
+                    <div class="pub-title es" style="display: none;">The importance of the human touch in journalism</div>
                     <div class="pub-authors">Mellado, C., & Gajardo, C.</div>
-                    <div class="pub-meta">Journalism Practice, 20(3), 747-764, 2026</div>
+                    <div class="pub-journal"><em>Journalism Practice</em>, 20(3), 747-764, 2026</div>
                 </div>
 
                 <div class="publication">
                     <div class="pub-title en">Examining platforms' affordances: Bridging journalists' and users' practices of online engagement</div>
-                    <div class="pub-title es" style="display: none;">Examining platforms' affordances: Bridging journalists' and users' practices of online engagement</div>
+                    <div class="pub-title es" style="display: none;">Examining platforms' affordances</div>
                     <div class="pub-authors">Gajardo, C., Domingo, D., & Costera Meijer, I.</div>
-                    <div class="pub-meta">Digital Journalism, 2025</div>
+                    <div class="pub-journal"><em>Digital Journalism</em>, 2025</div>
                 </div>
 
                 <div class="publication">
-                    <div class="pub-title en">The impact of political ideology on news consumption: The mediating role of trust and the moderating role of interest in politics</div>
-                    <div class="pub-title es" style="display: none;">The impact of political ideology on news consumption: The mediating role of trust and the moderating role of interest in polit[...]
+                    <div class="pub-title en">The impact of political ideology on news consumption: The mediating role of trust</div>
+                    <div class="pub-title es" style="display: none;">The impact of political ideology on news consumption</div>
                     <div class="pub-authors">Mellado, C., & Gajardo, C.</div>
-                    <div class="pub-meta">Mass Communication and Society, 2025</div>
+                    <div class="pub-journal"><em>Mass Communication and Society</em>, 2025</div>
                 </div>
 
                 <div class="publication">
                     <div class="pub-title en">Pistas para restablecer la confianza en el periodismo: Perspectiva de audiencias y profesionales en Chile</div>
                     <div class="pub-authors">Gajardo, C., & Mellado, C.</div>
-                    <div class="pub-meta">Estudios sobre el Mensaje Periodístico, 31(1), 143, 2025</div>
+                    <div class="pub-journal"><em>Estudios sobre el Mensaje Periodístico</em>, 31(1), 143, 2025</div>
                 </div>
 
                 <div class="publication">
                     <div class="pub-title en">"Journalists are just employees": Examining journalistic autonomy from an audience perspective</div>
-                    <div class="pub-title es" style="display: none;">"Journalists are just employees": Examining journalistic autonomy from an audience perspective</div>
+                    <div class="pub-title es" style="display: none;">"Journalists are just employees": Examining journalistic autonomy</div>
                     <div class="pub-authors">Gajardo, C., & Mellado, C.</div>
-                    <div class="pub-meta">Journalism Studies, 26(2), 200-219, 2025</div>
+                    <div class="pub-journal"><em>Journalism Studies</em>, 26(2), 200-219, 2025</div>
                 </div>
 
                 <div class="publication">
                     <div class="pub-title en">How loyalty works: Why do people continue their relationship with journalism?</div>
                     <div class="pub-title es" style="display: none;">How loyalty works: Why do people continue their relationship with journalism?</div>
                     <div class="pub-authors">Gajardo, C., & Costera Meijer, I.</div>
-                    <div class="pub-meta">Journalism Studies, 24(5), 650-668, 2023</div>
+                    <div class="pub-journal"><em>Journalism Studies</em>, 24(5), 650-668, 2023</div>
                 </div>
 
                 <div class="publication">
-                    <div class="pub-title en">How to tackle the conceptual inconsistency of audience engagement? The introduction of the dynamic model of audience engagement</div>
-                    <div class="pub-title es" style="display: none;">How to tackle the conceptual inconsistency of audience engagement? The introduction of the dynamic model of audience engagemen[...]
+                    <div class="pub-title en">How to tackle the conceptual inconsistency of audience engagement? The dynamic model of audience engagement</div>
+                    <div class="pub-title es" style="display: none;">How to tackle the conceptual inconsistency of audience engagement?</div>
                     <div class="pub-authors">Gajardo, C., & Costera Meijer, I.</div>
-                    <div class="pub-meta">Journalism, 0(0), 1-21, 2022</div>
+                    <div class="pub-journal"><em>Journalism</em>, 0(0), 1-21, 2022</div>
                 </div>
 
                 <div class="publication">
                     <div class="pub-title en">From abstract news users to living citizens: Assessing audience engagement through a professional lens</div>
-                    <div class="pub-title es" style="display: none;">From abstract news users to living citizens: Assessing audience engagement through a professional lens</div>
+                    <div class="pub-title es" style="display: none;">From abstract news users to living citizens</div>
                     <div class="pub-authors">Gajardo, C., Costera Meijer, I., & Domingo, D.</div>
-                    <div class="pub-meta">Journalism Practice, 0(0), 1-17, 2021</div>
+                    <div class="pub-journal"><em>Journalism Practice</em>, 0(0), 1-17, 2021</div>
                 </div>
 
                 <div class="publication">
                     <div class="pub-title en">Young Chileans' voices: The fabric of their listening practices while consuming news</div>
-                    <div class="pub-title es" style="display: none;">Young Chileans' voices: The fabric of their listening practices while consuming news</div>
+                    <div class="pub-title es" style="display: none;">Young Chileans' voices: The fabric of their listening practices</div>
                     <div class="pub-authors">Gajardo, C., & Moreno, T.</div>
-                    <div class="pub-meta">In Media and Governance in Latin America (pp. 225-241). Peter Lang Publishing, 2020</div>
+                    <div class="pub-journal">In <em>Media and Governance in Latin America</em> (pp. 225-241). Peter Lang Publishing, 2020</div>
                 </div>
 
                 <div class="publication">
                     <div class="pub-title en">Privacidad: Cómo se entiende y se gestiona en Facebook. Estudio de caso de jóvenes chilenos</div>
                     <div class="pub-authors">Becerra, T. M., Gajardo, C., & Ortiz, E. P.</div>
-                    <div class="pub-meta">Revista Latina de Comunicación Social, (71), 715-729, 2016</div>
+                    <div class="pub-journal"><em>Revista Latina de Comunicación Social</em>, (71), 715-729, 2016</div>
                 </div>
 
                 <h3 class="en" style="margin-top: 3rem;">Conference Presentations</h3>
                 <h3 class="es" style="display: none; margin-top: 3rem;">Presentaciones en Conferencias</h3>
-                
-                <p class="en" style="color: var(--color-text-secondary);">
-                    <strong>Selected recent presentations</strong> at international conferences including the International Communication Association (ICA), Future of Journalism Conference, Europ[...]
-                </p>
-                <p class="es" style="display: none; color: var(--color-text-secondary);">
-                    <strong>Presentaciones recientes seleccionadas</strong> en conferencias internacionales incluyendo la International Communication Association (ICA), Future of Journalism Confe[...]
-                </p>
+                <p class="en"><strong>Selected recent presentations</strong> at international conferences including the International Communication Association (ICA), Future of Journalism Conference, and European Communication Research and Education Association (ECREA).</p>
+                <p class="es" style="display: none;"><strong>Presentaciones recientes seleccionadas</strong> en conferencias internacionales incluyendo la International Communication Association (ICA) y Future of Journalism Conference.</p>
             </div>
+        </section>
 
-            <!-- CONSULTING PAGE -->
-            <div id="consulting" class="page">
+        <!-- Consulting Section -->
+        <section id="consulting" class="hidden">
+            <div class="container">
                 <h2 class="en">Consulting Services</h2>
                 <h2 class="es" style="display: none;">Servicios de Consultoría</h2>
 
-                <div class="section">
-                    <p class="en">
-                        I offer research-based consulting services to help news organizations, media outlets, universities, and civil society organizations better understand and engage with their[...]
-                    </p>
-                    <p class="es" style="display: none;">
-                        Ofrezco servicios de consultoría basados en investigación para ayudar a organizaciones noticiosas, medios, universidades y organizaciones de la sociedad civil a entender[...]
-                    </p>
+                <p class="en">
+                    I offer research-based consulting services to help news organizations, media outlets, universities, and civil society organizations better understand and engage with their audiences.
+                </p>
+                <p class="es" style="display: none;">
+                    Ofrezco servicios de consultoría basados en investigación para ayudar a organizaciones noticiosas, medios, universidades y organizaciones de la sociedad civil a entender mejor a sus audiencias.
+                </p>
+
+                <h3 class="en">Services</h3>
+                <h3 class="es" style="display: none;">Servicios</h3>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h4 class="en">Audience Research</h4>
+                        <h4 class="es" style="display: none;">Investigación de Audiencias</h4>
+                        <ul class="service-list en">
+                            <li><strong>Audience needs assessment</strong> — Understanding information gaps and audience priorities</li>
+                            <li><strong>News consumption studies</strong> — Analyzing how audiences consume news across platforms</li>
+                            <li><strong>Loyalty research</strong> — Identifying factors that build trust and long-term engagement</li>
+                        </ul>
+                        <ul class="service-list es" style="display: none;">
+                            <li><strong>Evaluación de necesidades</strong> — Entender brechas informativas</li>
+                            <li><strong>Estudios de consumo</strong> — Analizar cómo consumen noticias</li>
+                            <li><strong>Investigación de lealtad</strong> — Identificar factores de confianza</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <h4 class="en">Newsroom Training</h4>
+                        <h4 class="es" style="display: none;">Capacitación de Redacciones</h4>
+                        <ul class="service-list en">
+                            <li><strong>Audience-centered journalism</strong> — Workshops on understanding audience needs</li>
+                            <li><strong>Digital engagement strategy</strong> — Building sustainable audience relationships</li>
+                            <li><strong>Editorial strategy</strong> — Aligning priorities with audience needs</li>
+                        </ul>
+                        <ul class="service-list es" style="display: none;">
+                            <li><strong>Periodismo centrado en audiencias</strong> — Talleres sobre necesidades</li>
+                            <li><strong>Estrategia digital</strong> — Construir relaciones sostenibles</li>
+                            <li><strong>Estrategia editorial</strong> — Alinear prioridades</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <h4 class="en">Research Design</h4>
+                        <h4 class="es" style="display: none;">Diseño de Investigación</h4>
+                        <ul class="service-list en">
+                            <li><strong>Custom research projects</strong> — Tailored to your organization's needs</li>
+                            <li><strong>Methodological guidance</strong> — Surveys, interviews, focus groups</li>
+                            <li><strong>Data analysis & reporting</strong> — Translating findings into recommendations</li>
+                        </ul>
+                        <ul class="service-list es" style="display: none;">
+                            <li><strong>Proyectos personalizados</strong> — Adaptados a sus necesidades</li>
+                            <li><strong>Orientación metodológica</strong> — Encuestas, entrevistas</li>
+                            <li><strong>Análisis de datos</strong> — Traducir hallazgos</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <h3 class="en">Consulting Expertise</h3>
-                <h3 class="es" style="display: none;">Expertise en Consultoría</h3>
-
-                <div class="service">
-                    <h4 class="en">Audience Research & Insights</h4>
-                    <h4 class="es" style="display: none;">Investigación de Audiencias e Insights</h4>
-                    <p class="en">
-                        <strong>Audience needs assessment:</strong> Understand what information your audiences need, how they currently access it, and where gaps exist in your coverage or engagem[...]
-                    </p>
-                    <p class="es" style="display: none;">
-                        <strong>Evaluación de necesidades de audiencias:</strong> Entender qué información necesitan tus audiencias, cómo la acceden actualmente y dónde existen brechas en tu[...]
-                    </p>
-                    <p class="en">
-                        <strong>News consumption studies:</strong> Analyze how your audiences consume news across platforms, what content resonates, what drives engagement, and how demographics s[...]
-                    </p>
-                    <p class="es" style="display: none;">
-                        <strong>Estudios de consumo de noticias:</strong> Analizar cómo tus audiencias consumen noticias en diferentes plataformas, qué contenido resuena, qué impulsa el engage[...]
-                    </p>
-                    <p class="en">
-                        <strong>Audience loyalty research:</strong> Identify factors that build trust, maintain long-term audience relationships, and increase subscription or membership conversio[...]
-                    </p>
-                    <p class="es" style="display: none;">
-                        <strong>Investigación de lealtad de audiencias:</strong> Identificar factores que construyen confianza, mantienen relaciones de audiencia a largo plazo e incrementan conv[...]
-                    </p>
-                </div>
-
-                <div class="service">
-                    <h4 class="en">Newsroom Training & Strategy</h4>
-                    <h4 class="es" style="display: none;">Capacitación de Salas de Redacción y Estrategia</h4>
-                    <p class="en">
-                        <strong>Audience-centered journalism training:</strong> Workshops for your newsroom on understanding audience needs, engaging ethically with audiences, and making editoria[...]
-                    </p>
-                    <p class="es" style="display: none;">
-                        <strong>Capacitación en periodismo centrado en audiencias:</strong> Talleres para tu sala de redacción sobre entender necesidades de audiencias, involucrarse éticamente[...]
-                    </p>
-                    <p class="en">
-                        <strong>Digital engagement strategy:</strong> Develop strategies for building sustainable audience engagement across digital platforms while protecting journalist wellbein[...]
-                    </p>
-                    <p class="es" style="display: none;">
-                        <strong>Estrategia de engagement digital:</strong> Desarrollar estrategias para construir engagement sostenible de audiencias en plataformas digitales mientras se protege [...]
-                    </p>
-                    <p class="en">
-                        <strong>Editorial strategy consultation:</strong> Advise on aligning editorial priorities with audience information needs and democratic values.
-                    </p>
-                    <p class="es" style="display: none;">
-                        <strong>Consultoría de estrategia editorial:</strong> Asesorar sobre alinear prioridades editoriales con necesidades informativas de audiencias y valores democráticos.
-                    </p>
-                </div>
-
-                <div class="service">
-                    <h4 class="en">Research Design & Methodology</h4>
-                    <h4 class="es" style="display: none;">Diseño de Investigación y Metodología</h4>
-                    <p class="en">
-                        <strong>Custom research projects:</strong> Design and conduct audience research tailored to your organization's specific questions, context, and resources.
-                    </p>
-                    <p class="es" style="display: none;">
-                        <strong>Proyectos de investigación personalizados:</strong> Diseñar y realizar investigación de audiencias adaptada a las preguntas específicas, contexto y recursos de[...]
-                    </p>
-                    <p class="en">
-                        <strong>Methodological guidance:</strong> Support in designing robust research methodologies including surveys, interviews, focus groups, and digital trace analysis.
-                    </p>
-                    <p class="es" style="display: none;">
-                        <strong>Orientación metodológica:</strong> Apoyo en diseñar metodologías de investigación robustas incluyendo encuestas, entrevistas, grupos focales y análisis de tr[...]
-                    </p>
-                    <p class="en">
-                        <strong>Data analysis & reporting:</strong> Analyze research data and translate findings into clear, actionable recommendations for your organization.
-                    </p>
-                    <p class="es" style="display: none;">
-                        <strong>Análisis de datos y reportes:</strong> Analizar datos de investigación y traducir hallazgos en recomendaciones claras y accionables para tu organización.
-                    </p>
-                </div>
-
-                <div class="section" style="margin-top: 3rem;">
-                    <h3 class="en">Client Types & Industries</h3>
-                    <h3 class="es" style="display: none;">Tipos de Clientes e Industrias</h3>
-                    <p class="en">
-                        I work with news organizations and media outlets of all sizes, universities and research institutions, journalism schools, foundations supporting journalism, and NGOs and [...]
-                    </p>
-                    <p class="es" style="display: none;">
-                        Trabajo con organizaciones noticiosas y medios de todos los tamaños, universidades e instituciones de investigación, escuelas de periodismo, fundaciones que apoyan perio[...]
-                    </p>
-                </div>
-
-                <div class="section" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border-tertiary);">
-                    <h3 class="en">Get in Touch</h3>
-                    <h3 class="es" style="display: none;">Ponte en Contacto</h3>
-                    <p class="en">
-                        Interested in discussing a consulting project? I'd be happy to learn about your organization's needs and explore how we might work together.
-                    </p>
-                    <p class="es" style="display: none;">
-                        ¿Interesado en discutir un proyecto de consultoría? Me gustaría conocer las necesidades de tu organización y explorar cómo podríamos trabajar juntos.
-                    </p>
-                    <p><a href="mailto:congajardo@udec.cl" style="color: var(--color-text-primary); text-decoration: none; border-bottom: 1px solid var(--color-border-secondary);">congajardo@udec[...]
+                <div class="contact-cta">
+                    <p class="en">Interested in discussing a consulting project?</p>
+                    <p class="es" style="display: none;">¿Interesado en discutir un proyecto de consultoría?</p>
+                    <div class="contact-links">
+                        <a href="mailto:congajardo@udec.cl" class="contact-link">📧 congajardo@udec.cl</a>
+                        <a href="https://orcid.org/0000-0001-8372-8889" target="_blank" class="contact-link">ORCID</a>
+                        <a href="https://www.linkedin.com/in/constanza-gajardo-leon/" target="_blank" class="contact-link">LinkedIn</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Constanza Gajardo León. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script>
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            event.target.closest('.nav-link').classList.add('active');
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+                section.classList.add('hidden');
+            });
+
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Show selected section
+            if (sectionId === 'home') {
+                document.getElementById('home-section').classList.add('active');
+                document.getElementById('home-section').classList.remove('hidden');
+            } else {
+                document.getElementById(sectionId).classList.add('active');
+                document.getElementById(sectionId).classList.remove('hidden');
+            }
+
+            // Add active class to corresponding nav items
+            document.querySelectorAll(`.nav-item`).forEach(item => {
+                if ((sectionId === 'home' && item.textContent.trim() === 'Home' || item.textContent.trim() === 'Inicio') ||
+                    (sectionId === 'about' && item.textContent.trim() === 'About' || item.textContent.trim() === 'Sobre mí') ||
+                    (sectionId === 'research' && item.textContent.trim() === 'Research' || item.textContent.trim() === 'Investigación') ||
+                    (sectionId === 'publications' && item.textContent.trim() === 'Publications' || item.textContent.trim() === 'Publicaciones') ||
+                    (sectionId === 'consulting' && item.textContent.trim() === 'Consulting' || item.textContent.trim() === 'Consultoría')) {
+                    item.classList.add('active');
+                }
+            });
+
             window.scrollTo(0, 0);
         }
 
         function switchLang(lang) {
+            // Remove active class from all lang buttons
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+
+            // Add active class to selected button
             event.target.classList.add('active');
+
+            // Toggle visibility
             if (lang === 'en') {
-                document.querySelectorAll('.en').forEach(el => el.style.display = '');
+                document.querySelectorAll('.en').forEach(el => el.style.display = 'block');
                 document.querySelectorAll('.es').forEach(el => el.style.display = 'none');
             } else {
                 document.querySelectorAll('.en').forEach(el => el.style.display = 'none');
-                document.querySelectorAll('.es').forEach(el => el.style.display = '');
+                document.querySelectorAll('.es').forEach(el => el.style.display = 'block');
             }
         }
     </script>
