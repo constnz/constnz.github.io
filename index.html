@@ -136,6 +136,7 @@
             font-weight: 400;
             margin: 2rem 0 1rem;
             letter-spacing: -0.2px;
+            grid-column: 1 / -1;
         }
 
         h3 {
@@ -163,33 +164,60 @@
 
         .pub-item {
             margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #eee;
+            padding: 1.25rem;
+            border: 1px solid #eee;
+            border-radius: 3px;
+            background: #fafafa;
         }
 
         .pub-item:last-child {
-            border-bottom: none;
             margin-bottom: 0;
-            padding-bottom: 0;
         }
 
         .pub-title {
-            font-size: 15px;
-            font-weight: 500;
-            margin-bottom: 0.3rem;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
             line-height: 1.5;
         }
 
         .pub-authors {
-            font-size: 13px;
+            font-size: 12px;
             color: #666;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.3rem;
             font-style: italic;
         }
 
         .pub-journal {
-            font-size: 13px;
+            font-size: 12px;
             color: #888;
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-links {
+            display: flex;
+            gap: 1rem;
+            font-size: 12px;
+        }
+
+        .pub-links a {
+            border-bottom: none;
+            border: 1px solid #ddd;
+            padding: 0.3rem 0.6rem;
+            border-radius: 2px;
+            background: white;
+            color: #333;
+        }
+
+        .pub-links a:hover {
+            border-color: #333;
+            background: #f0f0f0;
+        }
+
+        .publications-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
         }
 
         .position {
@@ -244,6 +272,12 @@
             border: none;
         }
 
+        @media (max-width: 900px) {
+            .publications-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 600px) {
             .container {
                 padding: 1.5rem;
@@ -271,6 +305,10 @@
                 margin: 1.5rem 0 1rem;
             }
 
+            h2 {
+                font-size: 16px;
+            }
+
             .lang-switcher {
                 top: 15px;
                 right: 15px;
@@ -278,6 +316,31 @@
 
             .lang-btn {
                 font-size: 10px;
+                padding: 0.25rem 0.5rem;
+            }
+
+            .pub-item {
+                padding: 1rem;
+            }
+
+            .pub-title {
+                font-size: 13px;
+            }
+
+            .pub-authors {
+                font-size: 11px;
+            }
+
+            .pub-journal {
+                font-size: 11px;
+            }
+
+            .pub-links {
+                font-size: 11px;
+                gap: 0.5rem;
+            }
+
+            .pub-links a {
                 padding: 0.25rem 0.5rem;
             }
         }
@@ -317,10 +380,10 @@
         <!-- Home -->
         <section id="home" class="active">
             <p class="intro en">
-                I'm an Assistant Professor at Universidad de Concepción (Chile) and currently a researcher at Vrije Universiteit Brussel (Belgium). My research examines how citizens engage with news, what drives audience loyalty to journalism, and how to ensure quality journalism remains relevant and accessible in an era of media fragmentation.
+                I am a postdoctoral researcher at Vrije Universiteit Brussel and Assistant Professor at Universidad de Concepción. My research examines how citizens engage with news, what drives audi[...]
             </p>
             <p class="intro es" style="display: none;">
-                Soy Profesora Asistente en la Universidad de Concepción y actualmente trabajo como investigadora en la Vrije Universiteit Brussel (Bélgica). Mi investigación examina cómo se involucran los ciudadanos con las noticias, qué impulsa la lealtad de las audiencias al periodismo, y cómo garantizar que el periodismo de calidad siga siendo relevante en una era de fragmentación mediática.
+                Soy investigadora postdoctoral en Vrije Universiteit Brussel y Profesora Asistente en la Universidad de Concepción. Mi investigación examina cómo se involucran los ciudadanos con la[...]
             </p>
 
             <div class="contact-links">
@@ -413,7 +476,7 @@
                 My research examines four interconnected dimensions: news consumption practices, audience loyalty, news relevance to democratic participation, and digital inequalities in news access.
             </p>
             <p class="section-intro es" style="display: none;">
-                Mi investigación examina cuatro dimensiones interconectadas: prácticas de consumo de noticias, lealtad de audiencias, relevancia de noticias para la democracia, y desigualdades digitales en el acceso a noticias.
+                Mi investigación examina cuatro dimensiones interconectadas: prácticas de consumo de noticias, lealtad de audiencias, relevancia de noticias para la democracia, y desigualdades digit[...]
             </p>
 
             <h2 class="en">Active Projects</h2>
@@ -465,82 +528,135 @@
             <h1 class="en">Publications</h1>
             <h1 class="es" style="display: none;">Publicaciones</h1>
 
-            <h2 class="en">Journal Articles (Peer-Reviewed)</h2>
-            <h2 class="es" style="display: none;">Artículos en Revistas Científicas</h2>
+            <div class="publications-grid">
+                <h2 class="en">2026</h2>
+                <h2 class="es" style="display: none;">2026</h2>
 
-            <div class="pub-item">
-                <div class="pub-title en">Evaluating the potential and limits of trace-based interviews when studying news use</div>
-                <div class="pub-title es" style="display: none;">Evaluating the potential and limits of trace-based interviews when studying news use</div>
-                <div class="pub-authors">Gajardo, C., Kalogeropoulos, A., Rossini, P., Mont'Alverne, C., & Nicholls, T.</div>
-                <div class="pub-journal"><em>Information, Communication & Society</em>, 2026</div>
-            </div>
+                <div class="pub-item">
+                    <div class="pub-title en">Evaluating the potential and limits of trace-based interviews when studying news use</div>
+                    <div class="pub-title es" style="display: none;">Evaluating the potential and limits of trace-based interviews when studying news use</div>
+                    <div class="pub-authors">Gajardo, C., Kalogeropoulos, A., Rossini, P., Mont'Alverne, C., & Nicholls, T.</div>
+                    <div class="pub-journal"><em>Information, Communication & Society</em></div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1080/1369118X.2026.XXXXX" target="_blank">DOI</a>
+                    </div>
+                </div>
 
-            <div class="pub-item">
-                <div class="pub-title en">The importance of the human touch in journalism: Journalistic values from an audience perspective</div>
-                <div class="pub-title es" style="display: none;">The importance of the human touch in journalism</div>
-                <div class="pub-authors">Mellado, C., & Gajardo, C.</div>
-                <div class="pub-journal"><em>Journalism Practice</em>, 20(3), 747-764, 2026</div>
-            </div>
+                <div class="pub-item">
+                    <div class="pub-title en">The importance of the human touch in journalism: Journalistic values from an audience perspective</div>
+                    <div class="pub-title es" style="display: none;">The importance of the human touch in journalism</div>
+                    <div class="pub-authors">Mellado, C., & Gajardo, C.</div>
+                    <div class="pub-journal"><em>Journalism Practice</em>, 20(3), 747-764</div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1080/17512786.2026.XXXXX" target="_blank">DOI</a>
+                    </div>
+                </div>
 
-            <div class="pub-item">
-                <div class="pub-title en">Examining platforms' affordances: Bridging journalists' and users' practices of online engagement</div>
-                <div class="pub-title es" style="display: none;">Examining platforms' affordances</div>
-                <div class="pub-authors">Gajardo, C., Domingo, D., & Costera Meijer, I.</div>
-                <div class="pub-journal"><em>Digital Journalism</em>, 2025</div>
-            </div>
+                <h2 class="en">2025</h2>
+                <h2 class="es" style="display: none;">2025</h2>
 
-            <div class="pub-item">
-                <div class="pub-title en">The impact of political ideology on news consumption: The mediating role of trust and the moderating role of interest in politics</div>
-                <div class="pub-title es" style="display: none;">The impact of political ideology on news consumption</div>
-                <div class="pub-authors">Mellado, C., & Gajardo, C.</div>
-                <div class="pub-journal"><em>Mass Communication and Society</em>, 2025</div>
-            </div>
+                <div class="pub-item">
+                    <div class="pub-title en">Examining platforms' affordances: Bridging journalists' and users' practices of online engagement</div>
+                    <div class="pub-title es" style="display: none;">Examining platforms' affordances</div>
+                    <div class="pub-authors">Gajardo, C., Domingo, D., & Costera Meijer, I.</div>
+                    <div class="pub-journal"><em>Digital Journalism</em></div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1080/21670811.2025.XXXXX" target="_blank">DOI</a>
+                    </div>
+                </div>
 
-            <div class="pub-item">
-                <div class="pub-title en">Pistas para restablecer la confianza en el periodismo: Perspectiva de audiencias y profesionales en Chile</div>
-                <div class="pub-authors">Gajardo, C., & Mellado, C.</div>
-                <div class="pub-journal"><em>Estudios sobre el Mensaje Periodístico</em>, 31(1), 143, 2025</div>
-            </div>
+                <div class="pub-item">
+                    <div class="pub-title en">The impact of political ideology on news consumption: The mediating role of trust and the moderating role of interest in politics</div>
+                    <div class="pub-title es" style="display: none;">The impact of political ideology on news consumption</div>
+                    <div class="pub-authors">Mellado, C., & Gajardo, C.</div>
+                    <div class="pub-journal"><em>Mass Communication and Society</em></div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1080/15205436.2025.XXXXX" target="_blank">DOI</a>
+                    </div>
+                </div>
 
-            <div class="pub-item">
-                <div class="pub-title en">"Journalists are just employees": Examining journalistic autonomy from an audience perspective</div>
-                <div class="pub-title es" style="display: none;">"Journalists are just employees"</div>
-                <div class="pub-authors">Gajardo, C., & Mellado, C.</div>
-                <div class="pub-journal"><em>Journalism Studies</em>, 26(2), 200-219, 2025</div>
-            </div>
+                <div class="pub-item">
+                    <div class="pub-title en">Pistas para restablecer la confianza en el periodismo: Perspectiva de audiencias y profesionales en Chile</div>
+                    <div class="pub-authors">Gajardo, C., & Mellado, C.</div>
+                    <div class="pub-journal"><em>Estudios sobre el Mensaje Periodístico</em>, 31(1), 143</div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.5209/esmp.2025.XXXXX" target="_blank">DOI</a>
+                    </div>
+                </div>
 
-            <div class="pub-item">
-                <div class="pub-title en">How loyalty works: Why do people continue their relationship with journalism?</div>
-                <div class="pub-title es" style="display: none;">How loyalty works: Why do people continue their relationship with journalism?</div>
-                <div class="pub-authors">Gajardo, C., & Costera Meijer, I.</div>
-                <div class="pub-journal"><em>Journalism Studies</em>, 24(5), 650-668, 2023</div>
-            </div>
+                <div class="pub-item">
+                    <div class="pub-title en">"Journalists are just employees": Examining journalistic autonomy from an audience perspective</div>
+                    <div class="pub-title es" style="display: none;">"Journalists are just employees"</div>
+                    <div class="pub-authors">Gajardo, C., & Mellado, C.</div>
+                    <div class="pub-journal"><em>Journalism Studies</em>, 26(2), 200-219</div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1080/1461670X.2025.XXXXX" target="_blank">DOI</a>
+                    </div>
+                </div>
 
-            <div class="pub-item">
-                <div class="pub-title en">How to tackle the conceptual inconsistency of audience engagement? The dynamic model of audience engagement</div>
-                <div class="pub-title es" style="display: none;">How to tackle the conceptual inconsistency of audience engagement?</div>
-                <div class="pub-authors">Gajardo, C., & Costera Meijer, I.</div>
-                <div class="pub-journal"><em>Journalism</em>, 0(0), 1-21, 2022</div>
-            </div>
+                <h2 class="en">2023</h2>
+                <h2 class="es" style="display: none;">2023</h2>
 
-            <div class="pub-item">
-                <div class="pub-title en">From abstract news users to living citizens: Assessing audience engagement through a professional lens</div>
-                <div class="pub-title es" style="display: none;">From abstract news users to living citizens</div>
-                <div class="pub-authors">Gajardo, C., Costera Meijer, I., & Domingo, D.</div>
-                <div class="pub-journal"><em>Journalism Practice</em>, 0(0), 1-17, 2021</div>
-            </div>
+                <div class="pub-item">
+                    <div class="pub-title en">How loyalty works: Why do people continue their relationship with journalism?</div>
+                    <div class="pub-title es" style="display: none;">How loyalty works: Why do people continue their relationship with journalism?</div>
+                    <div class="pub-authors">Gajardo, C., & Costera Meijer, I.</div>
+                    <div class="pub-journal"><em>Journalism Studies</em>, 24(5), 650-668</div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1080/1461670X.2023.XXXXX" target="_blank">DOI</a>
+                    </div>
+                </div>
 
-            <div class="pub-item">
-                <div class="pub-title en">Young Chileans' voices: The fabric of their listening practices while consuming news</div>
-                <div class="pub-title es" style="display: none;">Young Chileans' voices</div>
-                <div class="pub-authors">Gajardo, C., & Moreno, T.</div>
-                <div class="pub-journal">In <em>Media and Governance in Latin America</em> (pp. 225-241). Peter Lang Publishing, 2020</div>
-            </div>
+                <h2 class="en">2022</h2>
+                <h2 class="es" style="display: none;">2022</h2>
 
-            <div class="pub-item">
-                <div class="pub-title en">Privacidad: Cómo se entiende y se gestiona en Facebook. Estudio de caso de jóvenes chilenos</div>
-                <div class="pub-authors">Becerra, T. M., Gajardo, C., & Ortiz, E. P.</div>
-                <div class="pub-journal"><em>Revista Latina de Comunicación Social</em>, (71), 715-729, 2016</div>
+                <div class="pub-item">
+                    <div class="pub-title en">How to tackle the conceptual inconsistency of audience engagement? The dynamic model of audience engagement</div>
+                    <div class="pub-title es" style="display: none;">How to tackle the conceptual inconsistency of audience engagement?</div>
+                    <div class="pub-authors">Gajardo, C., & Costera Meijer, I.</div>
+                    <div class="pub-journal"><em>Journalism</em></div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1177/1464884922XXXXX" target="_blank">DOI</a>
+                    </div>
+                </div>
+
+                <h2 class="en">2021</h2>
+                <h2 class="es" style="display: none;">2021</h2>
+
+                <div class="pub-item">
+                    <div class="pub-title en">From abstract news users to living citizens: Assessing audience engagement through a professional lens</div>
+                    <div class="pub-title es" style="display: none;">From abstract news users to living citizens</div>
+                    <div class="pub-authors">Gajardo, C., Costera Meijer, I., & Domingo, D.</div>
+                    <div class="pub-journal"><em>Journalism Practice</em></div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1080/17512786.2021.XXXXX" target="_blank">DOI</a>
+                    </div>
+                </div>
+
+                <h2 class="en">2020</h2>
+                <h2 class="es" style="display: none;">2020</h2>
+
+                <div class="pub-item">
+                    <div class="pub-title en">Young Chileans' voices: The fabric of their listening practices while consuming news</div>
+                    <div class="pub-title es" style="display: none;">Young Chileans' voices</div>
+                    <div class="pub-authors">Gajardo, C., & Moreno, T.</div>
+                    <div class="pub-journal">In <em>Media and Governance in Latin America</em> (pp. 225-241). Peter Lang Publishing</div>
+                    <div class="pub-links">
+                        <a href="https://www.peterlang.com/" target="_blank">Publisher</a>
+                    </div>
+                </div>
+
+                <h2 class="en">2016</h2>
+                <h2 class="es" style="display: none;">2016</h2>
+
+                <div class="pub-item">
+                    <div class="pub-title en">Privacidad: Cómo se entiende y se gestiona en Facebook. Estudio de caso de jóvenes chilenos</div>
+                    <div class="pub-authors">Becerra, T. M., Gajardo, C., & Ortiz, E. P.</div>
+                    <div class="pub-journal"><em>Revista Latina de Comunicación Social</em>, (71), 715-729</div>
+                    <div class="pub-links">
+                        <a href="https://www.revistalatinadecomunicacion.org/" target="_blank">Journal</a>
+                    </div>
+                </div>
             </div>
         </section>
 
