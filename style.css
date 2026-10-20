@@ -1,0 +1,121 @@
+/* Constanza Gajardo León — site styles. Plain CSS, no build step. MIT licensed. */
+/* Layout: a four-column Swiss grid. One typeface, one text size, one large statement per page. */
+:root {
+  --paper: #ffffff;
+  --ink:   #111111;
+  --muted: #8a8a86;
+  --rule:  #e6e6e3;
+  --sans: "Schibsted Grotesk", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --paper: #111111; --ink: #f1f1ee; --muted: #8b8b86; --rule: #2a2a28; color-scheme: dark; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 1rem/1.5 var(--sans);
+  padding-block: clamp(1.25rem, 3vw, 2.25rem) clamp(3rem, 8vw, 6rem);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 90rem; margin: 0 auto; display: grid; gap: clamp(4rem, 11vw, 8.5rem); }
+
+a {
+  color: inherit;
+  text-decoration: underline; text-decoration-color: transparent;
+  text-underline-offset: 3px; text-decoration-thickness: 1px;
+  transition: color .25s ease, text-decoration-color .25s ease;
+}
+a:hover { text-decoration-color: currentColor; }
+
+/* Smooth movement: cross-fade between pages, gentle fade-in on load */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .35s; animation-timing-function: ease; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.wrap > * { animation: rise .7s cubic-bezier(.2, .7, .2, 1) both; }
+.wrap > *:nth-child(2) { animation-delay: .08s; }
+.wrap > *:nth-child(3) { animation-delay: .16s; }
+.wrap > *:nth-child(n+4) { animation-delay: .24s; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  .wrap > * { animation: none; }
+  a { transition: none; }
+  html { scroll-behavior: auto; }
+  @view-transition { navigation: none; }
+}
+a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.muted { color: var(--muted); }
+i, em { font-style: italic; }
+
+/* The grid */
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; }
+.grid > * { min-width: 0; }
+
+/* Site header */
+.site ul { list-style: none; margin: 0; padding: 0; }
+.site nav a { color: var(--muted); }
+.site nav a[aria-current="page"] { color: var(--ink); }
+.site .lang a { color: var(--muted); }
+.site .lang a[aria-current="page"] { color: var(--ink); }
+
+/* The one large thing on each page */
+.statement {
+  grid-column: 1 / -1; margin: 0;
+  font: 400 clamp(1.9rem, 4.4vw, 3.6rem)/1.08 var(--sans);
+  letter-spacing: -.025em; max-width: 22em; text-wrap: balance;
+}
+.statement .muted { color: var(--muted); }
+
+/* Home columns */
+.cols p { margin: 0 0 .9rem; }
+.label { display: block; color: var(--muted); margin-bottom: .5rem; }
+ol.short { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+
+/* Inner pages: label in the first column, content across the other three */
+.page { display: grid; gap: 3rem; }
+section { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 1.5rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
+section > h2 { grid-column: 1; grid-row: 1 / span 20; margin: 0; font: 400 1rem/1.5 var(--sans); color: var(--muted); }
+section > :not(h2) { grid-column: 2 / -1; min-width: 0; }
+section > :not(h2) + :not(h2) { margin-top: .75rem; }
+h3 { margin: 1rem 0 0; font: 400 1rem/1.5 var(--sans); color: var(--muted); }
+section > h3:first-of-type { margin-top: 0; }
+
+ol.refs { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; max-width: 48rem; }
+ol.refs li { padding-left: 1.5rem; text-indent: -1.5rem; }
+ol.refs a { color: var(--muted); word-break: break-word; }
+ol.refs a:hover { color: var(--ink); }
+ol.refs b { font-weight: 500; }
+.yr { color: var(--muted); margin-right: .6rem; font-variant-numeric: tabular-nums; }
+
+ul.log { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; max-width: 52rem; }
+ul.log li { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: 1.5rem; }
+.kind { color: var(--muted); font-variant-numeric: tabular-nums; }
+.where { color: var(--muted); }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 1rem; }
+  .wide { grid-column: 1 / -1; }
+  .site > [aria-hidden="true"] { display: none; }
+  section { grid-template-columns: 1fr; }
+  section > h2, section > :not(h2) { grid-column: 1; grid-row: auto; }
+  section > h2 { margin-bottom: .75rem; }
+  ul.log li { grid-template-columns: 1fr; gap: 0; }
+}
+
+/* Consulting: services as a small grid of title + description */
+.services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem 1.5rem; }
+.services h3 { margin: 0 0 .4rem; color: var(--ink); }
+.services p { margin: 0; color: var(--muted); }
+.note { color: var(--muted); max-width: 40rem; margin: 0; }
+.cta { font: 400 clamp(1.4rem, 2.6vw, 2rem)/1.2 var(--sans); letter-spacing: -.015em; margin: 0; max-width: 28em; }
+@media (max-width: 760px) { .services { grid-template-columns: 1fr; } }
+
+.services.two { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 52rem; }
+.cta + .services { margin-top: 1.75rem; }
+@media (max-width: 760px) { .services.two { grid-template-columns: 1fr; } }
+.prose { max-width: 40rem; }
+.prose p { margin: 0 0 1rem; }
+.prose p:last-child { margin-bottom: 0; }

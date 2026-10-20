@@ -1,643 +1,154 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Constanza Gajardo León</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: #333;
-            background: #fff;
-            line-height: 1.6;
-            font-size: 16px;
-        }
-
-        a {
-            color: #333;
-            text-decoration: none;
-            border-bottom: 1px solid #333;
-            transition: opacity 0.2s;
-        }
-
-        a:hover {
-            opacity: 0.6;
-        }
-
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        header {
-            padding: 3rem 2rem 2rem;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        header .title {
-            font-size: 28px;
-            font-weight: 400;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
-        }
-
-        header .subtitle {
-            font-size: 14px;
-            color: #666;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid #eee;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: none;
-            color: #666;
-            font-weight: 500;
-        }
-
-        nav a:hover,
-        nav a.active {
-            color: #333;
-        }
-
-        .lang-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 0.5rem;
-            z-index: 1000;
-        }
-
-        .lang-btn {
-            background: none;
-            border: 1px solid #ccc;
-            color: #666;
-            font-size: 11px;
-            cursor: pointer;
-            padding: 0.3rem 0.6rem;
-            border-radius: 2px;
-            transition: all 0.2s;
-            font-weight: 500;
-            text-transform: uppercase;
-        }
-
-        .lang-btn.active {
-            background: #333;
-            color: white;
-            border-color: #333;
-        }
-
-        .lang-btn:hover {
-            border-color: #333;
-        }
-
-        section {
-            display: none;
-            padding: 2rem 0;
-        }
-
-        section.active {
-            display: block;
-        }
-
-        h1 {
-            font-size: 24px;
-            font-weight: 400;
-            margin: 2rem 0 1.5rem;
-            letter-spacing: -0.3px;
-        }
-
-        h2 {
-            font-size: 18px;
-            font-weight: 400;
-            margin: 2rem 0 1rem;
-            letter-spacing: -0.2px;
-            grid-column: 1 / -1;
-        }
-
-        h3 {
-            font-size: 16px;
-            font-weight: 500;
-            margin: 1.5rem 0 0.75rem;
-        }
-
-        p {
-            margin-bottom: 1rem;
-            color: #444;
-            line-height: 1.8;
-        }
-
-        ul, ol {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        ul li, ol li {
-            margin-bottom: 0.5rem;
-            color: #444;
-            line-height: 1.7;
-        }
-
-        .pub-item {
-            margin-bottom: 2rem;
-            padding: 1.25rem;
-            border: 1px solid #eee;
-            border-radius: 3px;
-            background: #fafafa;
-        }
-
-        .pub-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .pub-title {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            line-height: 1.5;
-        }
-
-        .pub-authors {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 0.3rem;
-            font-style: italic;
-        }
-
-        .pub-journal {
-            font-size: 12px;
-            color: #888;
-            margin-bottom: 0.5rem;
-        }
-
-        .pub-links {
-            display: flex;
-            gap: 1rem;
-            font-size: 12px;
-        }
-
-        .pub-links a {
-            border-bottom: none;
-            border: 1px solid #ddd;
-            padding: 0.3rem 0.6rem;
-            border-radius: 2px;
-            background: white;
-            color: #333;
-        }
-
-        .pub-links a:hover {
-            border-color: #333;
-            background: #f0f0f0;
-        }
-
-        .publications-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .position {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .position:last-child {
-            border-bottom: none;
-        }
-
-        .position-title {
-            font-weight: 500;
-            font-size: 15px;
-        }
-
-        .position-inst {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 0.2rem;
-        }
-
-        .position-dates {
-            font-size: 13px;
-            color: #999;
-        }
-
-        .intro {
-            font-size: 15px;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            color: #444;
-        }
-
-        .section-intro {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-            font-size: 13px;
-        }
-
-        .contact-links a {
-            border: none;
-        }
-
-        @media (max-width: 900px) {
-            .publications-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 1.5rem;
-            }
-
-            header {
-                padding: 2rem 1.5rem 1.5rem;
-            }
-
-            header .title {
-                font-size: 22px;
-            }
-
-            nav {
-                gap: 1rem;
-                padding: 1rem 0;
-            }
-
-            nav a {
-                font-size: 12px;
-            }
-
-            h1 {
-                font-size: 20px;
-                margin: 1.5rem 0 1rem;
-            }
-
-            h2 {
-                font-size: 16px;
-            }
-
-            .lang-switcher {
-                top: 15px;
-                right: 15px;
-            }
-
-            .lang-btn {
-                font-size: 10px;
-                padding: 0.25rem 0.5rem;
-            }
-
-            .pub-item {
-                padding: 1rem;
-            }
-
-            .pub-title {
-                font-size: 13px;
-            }
-
-            .pub-authors {
-                font-size: 11px;
-            }
-
-            .pub-journal {
-                font-size: 11px;
-            }
-
-            .pub-links {
-                font-size: 11px;
-                gap: 0.5rem;
-            }
-
-            .pub-links a {
-                padding: 0.25rem 0.5rem;
-            }
-        }
-
-        /* Language visibility */
-        .en { display: block; }
-        .es { display: none; }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Constanza Gajardo León · Journalism studies researcher</title>
+<meta name="description" content="Constanza Gajardo León studies what audiences need from journalism: engagement, loyalty, trust and how social and digital inequalities shape who feels served by news. Postdoctoral Researcher at Vrije Universiteit Brussel.">
+<link rel="canonical" href="https://constnz.github.io/">
+<link rel="alternate" hreflang="en" href="https://constnz.github.io/">
+<link rel="alternate" hreflang="es" href="https://constnz.github.io/es.html">
+<link rel="alternate" hreflang="x-default" href="https://constnz.github.io/">
+<meta name="author" content="Constanza Gajardo León">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Constanza Gajardo León · Journalism studies researcher">
+<meta property="og:description" content="Constanza Gajardo León studies what audiences need from journalism: engagement, loyalty, trust and how social and digital inequalities shape who feels served by news. Postdoctoral Researcher at Vrije Universiteit Brussel.">
+<meta property="og:url" content="https://constnz.github.io/">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Person",
+   "@id": "https://constnz.github.io/#person",
+   "name": "Constanza Gajardo León",
+   "alternateName": [
+    "Constanza Gajardo",
+    "C. Gajardo"
+   ],
+   "url": "https://constnz.github.io/",
+   "jobTitle": [
+    "Postdoctoral Researcher",
+    "Assistant Professor"
+   ],
+   "affiliation": [
+    {
+     "@type": "CollegeOrUniversity",
+     "name": "Vrije Universiteit Brussel"
+    },
+    {
+     "@type": "CollegeOrUniversity",
+     "name": "Universidad de Concepción"
+    },
+    {
+     "@type": "ResearchOrganization",
+     "name": "Millennium Nucleus for the Study of Politics, Public Opinion and Media in Chile (MEPOP)"
+    }
+   ],
+   "alumniOf": [
+    {
+     "@type": "CollegeOrUniversity",
+     "name": "Vrije Universiteit Amsterdam"
+    },
+    {
+     "@type": "CollegeOrUniversity",
+     "name": "Universidad de Concepción"
+    }
+   ],
+   "knowsAbout": [
+    "journalism studies",
+    "news audiences",
+    "audience engagement",
+    "trust in journalism",
+    "news loyalty",
+    "news avoidance",
+    "digital news inequalities",
+    "trace interviews",
+    "qualitative research methods",
+    "local news"
+   ],
+   "makesOffer": {"@type": "Offer", "url": "https://constnz.github.io/consulting.html", "itemOffered": {"@type": "Service", "name": "Audience research consulting"}},
+  "knowsLanguage": [
+    "es",
+    "en"
+   ],
+   "award": "Top Faculty Paper Award, ICA Journalism Studies Division (2024)",
+   "sameAs": []
+  },
+  {
+   "@type": "ProfilePage",
+   "url": "https://constnz.github.io/",
+   "mainEntity": {
+    "@id": "https://constnz.github.io/#person"
+   },
+   "inLanguage": "en"
+  }
+ ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="lang-switcher">
-        <button class="lang-btn active" onclick="switchLang('en')">EN</button>
-        <button class="lang-btn" onclick="switchLang('es')">ES</button>
+<div class="wrap">
+
+  <header class="site grid">
+    <a href="index.html">Constanza Gajardo León</a>
+    <div aria-hidden="true"></div>
+    <nav aria-label="Site"><ul>
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="conferences.html">Conferences</a></li>
+      <li><a href="teaching.html">Teaching &amp; Service</a></li>
+    </ul></nav>
+    <div class="lang"><a href="index.html" aria-current="page">Eng</a> <span class="muted">/</span> <a href="es.html" lang="es">Esp</a></div>
+  </header>
+
+  <main class="grid">
+    <h1 class="statement">For a long time, journalism asked how to reach its audience. <span class="muted">I ask what audiences need from journalism, and why that relationship holds for some people and breaks down for others.</span></h1>
+  </main>
+
+  <div class="grid cols">
+    <div class="wide">
+      <span class="label">Now</span>
+      Postdoctoral Researcher, Vrije Universiteit Brussel<br><br>
+      Assistant Professor, Universidad de Concepción<br><br>
+      Adjunct Researcher, Millennium Nucleus MEPOP
     </div>
-
-    <header>
-        <div class="title en">Constanza Gajardo León</div>
-        <div class="title es" style="display: none;">Constanza Gajardo León</div>
-        <div class="subtitle en">Researcher | Journalism Studies </div>
-        <div class="subtitle es" style="display: none;">Investigadora académica | Estudios de Periodismo</div>
-    </header>
-
-    <nav>
-        <a class="nav-link active en" onclick="showSection('home')">Home</a>
-        <a class="nav-link active es" onclick="showSection('home')" style="display: none;">Inicio</a>
-        <a class="nav-link en" onclick="showSection('publications')">Publications</a>
-        <a class="nav-link es" onclick="showSection('publications')" style="display: none;">Publicaciones</a>
-    </nav>
-
-    <div class="container">
-        <!-- Home -->
-        <section id="home" class="active">
-            <p class="intro en">
-                I am a postdoctoral researcher at Vrije Universiteit Brussel and Assistant Professor at Universidad de Concepción. My research examines how citizens engage with news, what drives[...]
-            </p>
-            <p class="intro es" style="display: none;">
-                Soy investigadora postdoctoral en Vrije Universiteit Brussel y Profesora Asistente en la Universidad de Concepción. Mi investigación examina cómo se involucran los ciudadanos c[...]
-            </p>
-
-            <div class="contact-links">
-                <a href="mailto:congajardo@udec.cl">Email</a>
-                <a href="https://orcid.org/0000-0001-8372-8889" target="_blank">ORCID</a>
-                <a href="https://www.linkedin.com/in/constanza-gajardo-leon/" target="_blank">LinkedIn</a>
-            </div>
-        </section>
-
-        <!-- About -->
-        <section id="about">
-            <h1 class="en">About</h1>
-            <h1 class="es" style="display: none;">Sobre mí</h1>
-
-            <h2 class="en">Current Positions</h2>
-            <h2 class="es" style="display: none;">Posiciones Actuales</h2>
-
-            <div class="position">
-                <div class="position-title en">Postdoctoral Researcher</div>
-                <div class="position-title es" style="display: none;">Investigadora Postdoctoral</div>
-                <div class="position-inst en">Vrije Universiteit Brussel</div>
-                <div class="position-inst es" style="display: none;">Vrije Universiteit Brussel</div>
-                <div class="position-dates">2025–present</div>
-            </div>
-
-            <div class="position">
-                <div class="position-title en">Assistant Professor</div>
-                <div class="position-title es" style="display: none;">Profesora Asistente</div>
-                <div class="position-inst en">Department of Social Communication, Universidad de Concepción</div>
-                <div class="position-inst es" style="display: none;">Departamento de Comunicación Social, Universidad de Concepción</div>
-                <div class="position-dates">2013–present</div>
-            </div>
-
-            <div class="position">
-                <div class="position-title en">Adjunct Researcher</div>
-                <div class="position-title es" style="display: none;">Investigadora Adjunta</div>
-                <div class="position-inst en">Millennium Nucleus for the Study of Politics, Public Opinion and Media in Chile (MEPOP)</div>
-                <div class="position-inst es" style="display: none;">Núcleo Milenio para el Estudio de la Política, Opinión Pública y Medios en Chile (MEPOP)</div>
-                <div class="position-dates">2024–present</div>
-            </div>
-
-            <h2 class="en">Education</h2>
-            <h2 class="es" style="display: none;">Educación</h2>
-
-            <div class="position">
-                <div class="position-title en">Ph.D. in Humanities</div>
-                <div class="position-title es" style="display: none;">Doctorado en Humanidades</div>
-                <div class="position-inst en">Vrije Universiteit Amsterdam</div>
-                <div class="position-inst es" style="display: none;">Vrije Universiteit Amsterdam</div>
-                <div class="position-dates">2023</div>
-            </div>
-
-            <div class="position">
-                <div class="position-title en">M.A. in Social Communication</div>
-                <div class="position-title es" style="display: none;">Magíster en Comunicación Social</div>
-                <div class="position-inst en">Universidad de Concepción</div>
-                <div class="position-inst es" style="display: none;">Universidad de Concepción</div>
-                <div class="position-dates">2012</div>
-            </div>
-
-            <div class="position">
-                <div class="position-title en">B.A. in Journalism</div>
-                <div class="position-title es" style="display: none;">Licenciatura en Periodismo</div>
-                <div class="position-inst en">Universidad de Concepción</div>
-                <div class="position-inst es" style="display: none;">Universidad de Concepción</div>
-                <div class="position-dates">2009</div>
-            </div>
-
-            <h2 class="en">Recognition & Awards</h2>
-            <h2 class="es" style="display: none;">Premios y Reconocimientos</h2>
-
-            <ul class="en">
-                <li>TOP FACULTY PAPER Award, 74th International Communication Association Conference, Journalism Studies Division (2024)</li>
-                <li>BECAS CHILE Doctoral Scholarship for Studies Abroad (2017)</li>
-                <li>University of Concepción Award (2011)</li>
-            </ul>
-            <ul class="es" style="display: none;">
-                <li>Premio TOP FACULTY PAPER, 74ª Conferencia de la International Communication Association, División de Journalism Studies (2024)</li>
-                <li>Beca BECAS CHILE para Doctorado en el Extranjero (2017)</li>
-                <li>Premio Universidad de Concepción (2011)</li>
-            </ul>
-        </section>
-
-        <!-- Publications -->
-        <section id="publications">
-            <h1 class="en">Publications</h1>
-            <h1 class="es" style="display: none;">Publicaciones</h1>
-
-            <div class="publications-grid">
-                <h2 class="en">2026</h2>
-                <h2 class="es" style="display: none;">2026</h2>
-
-                <div class="pub-item">
-                    <div class="pub-title en">Evaluating the potential and limits of trace-based interviews when studying news use</div>
-                    <div class="pub-title es" style="display: none;">Evaluating the potential and limits of trace-based interviews when studying news use</div>
-                    <div class="pub-authors">Gajardo, C., Kalogeropoulos, A., Rossini, P., Mont'Alverne, C., & Nicholls, T.</div>
-                    <div class="pub-journal"><em>Information, Communication & Society</em></div>
-                    <div class="pub-links">
-                        <a href="https://doi.org/10.1080/1369118X.2026.2652514" target="_blank">DOI</a>
-                    </div>
-                </div>
-
-                <div class="pub-item">
-                    <div class="pub-title en">The importance of the human touch in journalism: Journalistic values from an audience perspective</div>
-                    <div class="pub-title es" style="display: none;">The importance of the human touch in journalism</div>
-                    <div class="pub-authors">Mellado, C., & Gajardo, C.</div>
-                    <div class="pub-journal"><em>Journalism Practice</em>, 20(3), 747-764</div>
-                    <div class="pub-links">
-                        <a href="https://doi.org/10.1080/17512786.2024.2387668" target="_blank">DOI</a>
-                    </div>
-                </div>
-
-                <h2 class="en">2025</h2>
-                <h2 class="es" style="display: none;">2025</h2>
-
-                <div class="pub-item">
-                    <div class="pub-title en">Examining platforms' affordances: Bridging journalists' and users' practices of online engagement</div>
-                    <div class="pub-title es" style="display: none;">Examining platforms' affordances</div>
-                    <div class="pub-authors">Gajardo, C., Domingo, D., & Costera Meijer, I.</div>
-                    <div class="pub-journal"><em>Digital Journalism</em></div>
-                    <div class="pub-links">
-                        <a href="https://doi.org/10.1080/21670811.2025.2559370" target="_blank">DOI</a>
-                    </div>
-                </div>
-
-                <div class="pub-item">
-                    <div class="pub-title en">The impact of political ideology on news consumption: The mediating role of trust and the moderating role of interest in politics</div>
-                    <div class="pub-title es" style="display: none;">The impact of political ideology on news consumption</div>
-                    <div class="pub-authors">Mellado, C., & Gajardo, C.</div>
-                    <div class="pub-journal"><em>Mass Communication and Society</em></div>
-                    <div class="pub-links">
-                        <a href="https://doi.org/10.1080/15205436.2025.2546447" target="_blank">DOI</a>
-                    </div>
-                </div>
-
-                <div class="pub-item">
-                    <div class="pub-title en">Pistas para restablecer la confianza en el periodismo: Perspectiva de audiencias y profesionales en Chile</div>
-                    <div class="pub-authors">Gajardo, C., & Mellado, C.</div>
-                    <div class="pub-journal"><em>Estudios sobre el Mensaje Periodístico</em>, 31(1), 143</div>
-                    <div class="pub-links">
-                        <a href="https://revistas.ucm.es/index.php/ESMP/article/view/97549" target="_blank">Journal</a>
-                    </div>
-                </div>
-
-                <div class="pub-item">
-                    <div class="pub-title en">"Journalists are just employees": Examining journalistic autonomy from an audience perspective</div>
-                    <div class="pub-title es" style="display: none;">"Journalists are just employees"</div>
-                    <div class="pub-authors">Gajardo, C., & Mellado, C.</div>
-                    <div class="pub-journal"><em>Journalism Studies</em>, 26(2), 200-219</div>
-                    <div class="pub-links">
-                        <a href="https://doi.org/10.1080/1461670X.2024.2416062" target="_blank">DOI</a>
-                    </div>
-                </div>
-
-                <h2 class="en">2023</h2>
-                <h2 class="es" style="display: none;">2023</h2>
-
-                <div class="pub-item">
-                    <div class="pub-title en">How loyalty works: Why do people continue their relationship with journalism?</div>
-                    <div class="pub-title es" style="display: none;">How loyalty works: Why do people continue their relationship with journalism?</div>
-                    <div class="pub-authors">Gajardo, C., & Costera Meijer, I.</div>
-                    <div class="pub-journal"><em>Journalism Studies</em>, 24(5), 650-668</div>
-                    <div class="pub-links">
-                        <a href="https://doi.org/10.1080/1461670X.2023.2178246" target="_blank">DOI</a>
-                    </div>
-                </div>
-
-                <h2 class="en">2022</h2>
-                <h2 class="es" style="display: none;">2022</h2>
-
-                <div class="pub-item">
-                    <div class="pub-title en">How to tackle the conceptual inconsistency of audience engagement? The dynamic model of audience engagement</div>
-                    <div class="pub-title es" style="display: none;">How to tackle the conceptual inconsistency of audience engagement?</div>
-                    <div class="pub-authors">Gajardo, C., & Costera Meijer, I.</div>
-                    <div class="pub-journal"><em>Journalism</em></div>
-                    <div class="pub-links">
-                        <a href="https://doi.org/10.1177/14648849221080356" target="_blank">DOI</a>
-                    </div>
-                </div>
-
-                <h2 class="en">2021</h2>
-                <h2 class="es" style="display: none;">2021</h2>
-
-                <div class="pub-item">
-                    <div class="pub-title en">From abstract news users to living citizens: Assessing audience engagement through a professional lens</div>
-                    <div class="pub-title es" style="display: none;">From abstract news users to living citizens</div>
-                    <div class="pub-authors">Gajardo, C., Costera Meijer, I., & Domingo, D.</div>
-                    <div class="pub-journal"><em>Journalism Practice</em></div>
-                    <div class="pub-links">
-                        <a href="https://doi.org/10.1080/17512786.2021.1925949" target="_blank">DOI</a>
-                    </div>
-                </div>
-
-                <h2 class="en">2020</h2>
-                <h2 class="es" style="display: none;">2020</h2>
-
-                <div class="pub-item">
-                    <div class="pub-title en">Young Chileans' voices: The fabric of their listening practices while consuming news</div>
-                    <div class="pub-title es" style="display: none;">Young Chileans' voices</div>
-                    <div class="pub-authors">Gajardo, C., & Moreno, T.</div>
-                    <div class="pub-journal">In <em>Media and Governance in Latin America</em> (pp. 225-241). Peter Lang Publishing</div>
-                    <div class="pub-links">
-                        <a href="https://www.peterlang.com/" target="_blank">Publisher</a>
-                    </div>
-                </div>
-
-                <h2 class="en">2016</h2>
-                <h2 class="es" style="display: none;">2016</h2>
-
-                <div class="pub-item">
-                    <div class="pub-title en">Privacidad: Cómo se entiende y se gestiona en Facebook. Estudio de caso de jóvenes chilenos</div>
-                    <div class="pub-authors">Becerra, T. M., Gajardo, C., & Ortiz, E. P.</div>
-                    <div class="pub-journal"><em>Revista Latina de Comunicación Social</em>, (71), 715-729</div>
-                    <div class="pub-links">
-                        <a href="https://www.revistalatinadecomunicacion.org/" target="_blank">Journal</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="wide">
+      <span class="label">Research</span>
+      <p>My research brings citizens’ perspectives into journalism studies: how audiences engage with news, why they remain loyal, what earns their trust, and how social and digital inequalities shape who feels served by journalism and who does not.</p>
+      <p>I work mainly with qualitative and trace-based methods, in Latin America and Europe.</p>
     </div>
+    <div class="wide">
+      <span class="label">Recent</span>
+      <ol class="short">
+        <li><span class="yr">2026</span><a href="https://doi.org/10.1177/10776990261447245">From access to experience</a>, <i>JMCQ</i></li>
+        <li><span class="yr">2026</span><a href="https://doi.org/10.1080/1369118X.2026.2652514">Trace-based interviews</a>, <i>ICS</i></li>
+        <li><span class="yr">2026</span><a href="https://doi.org/10.1080/19331681.2026.2692137">No time or tech for online news</a>, <i>JITP</i></li>
+        <li><span class="yr">2026</span>The attention gap, Brno</li>
+        <li><span class="yr">2026</span>Inequalities seen and unseen, ICA</li>
+        <li><a class="muted" href="publications.html">All publications →</a></li>
+      </ol>
+    </div>
+    <div class="wide">
+      <span class="label">Contact</span>
+      <a href="#" data-mail>Email</a><br>
+      <a href="#">Google Scholar ↗</a><br>
+      <a href="#">ORCID ↗</a><br>
+      <a href="#">LinkedIn ↗</a><br>
+      <a href="consulting.html">Consulting →</a>
+    </div>
+  </div>
 
-    <script>
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('section').forEach(section => {
-                section.classList.remove('active');
-            });
 
-            // Remove active class from all nav links
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-
-            // Show selected section
-            document.getElementById(sectionId).classList.add('active');
-
-            // Add active class to corresponding nav link
-            document.querySelectorAll(`[onclick="showSection('${sectionId}')"]`).forEach(link => {
-                link.classList.add('active');
-            });
-
-            window.scrollTo(0, 0);
-        }
-
-        function switchLang(lang) {
-            // Remove active class from all lang buttons
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-
-            // Add active class to selected button
-            event.target.classList.add('active');
-
-            // Toggle visibility
-            if (lang === 'en') {
-                document.querySelectorAll('.en').forEach(el => el.style.display = 'block');
-                document.querySelectorAll('.es').forEach(el => el.style.display = 'none');
-            } else {
-                document.querySelectorAll('.en').forEach(el => el.style.display = 'none');
-                document.querySelectorAll('.es').forEach(el => el.style.display = 'block');
-            }
-        }
-    </script>
+</div>
+<script>document.querySelectorAll("[data-mail]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();location.href="mai"+"lto:"+["cgajardoleon","gmail.com"].join("@");});});</script>
 </body>
 </html>
